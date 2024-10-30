@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生產報表-良率</title>
+    <!-- Morris.js CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Raphael.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <!-- Morris.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <!-- 你的自定義 JS -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <style>
+        /* 你可以在這裡添加自定義樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            margin: 0;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-xl-8 col-lg-8 col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">生產報表-良率</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-8">
+                            <div id="morris-bar-chart" style="height: 250px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+</body>
+</html>

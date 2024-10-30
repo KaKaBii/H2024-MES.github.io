@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>workplan</title>
+    <!-- Favicon icon -->
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/images/DSK-LOGO圖片_1.jpg">
+    <!-- Datatable -->
+    <link href="../static/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link href="../static/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+        <div class="nav-header">
+            <a href="{{ url_for('index') }}" class="brand-logo">
+                <img class="logo-abbr" src="../static/images/DSK-LOGO去背_10.png" alt="">                
+                <img class="brand-title" src="../static/images/DSK-LOGO去背_12.png" alt="">
+            </a>          
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="header-left">
+                            <div class="search_bar dropdown">
+                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
+                                    <i class="mdi mdi-magnify"></i>
+                                </span>
+                                <div class="dropdown-menu p-0 m-0">
+                                    <form>
+                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="navbar-nav header-right">                           
+                            <li class="nav-item dropdown header-profile">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                    <i class="mdi mdi-account"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">                                
+                                    <a href="{{ url_for('page_login') }}" class="dropdown-item">
+                                        <i class="icon-key"></i>
+                                        <span class="ml-2">Logout </span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+        <div class="quixnav">
+            <div class="quixnav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Main Menu</li>                    
+                    <li><a href="{{ url_for('index') }}"  aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
+                        class="nav-text">戰情看板</span></a></li>
+                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                            class="icon icon-layout-25"></i><span class="nav-text">SFC 生產管理</span></a>
+                    <ul>
+                        <li><a href="{{ url_for('table_workplan') }}" >生產計劃</a></li>
+
+                        <li><a href="{{ url_for('table_monitor') }}" >來料監控</a></li>
+                        
+                    </ul>
+                </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">WMS 倉庫管理</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url_for('table_WMS') }}">庫存填報</a></li>                            
+                            <li><a href="{{ url_for('table_WMS') }}">庫存管理</a></li>
+                        </ul>
+                    </li>                   
+
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-single-copy-06"></i><span class="nav-text">QMS 品質管理</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url_for('page_register') }}">良率分析</a></li>
+                            <li><a href="{{ url_for('page_login') }}">品檢系統</a></li>                               
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-form"></i><span class="nav-text">SPM 備品管理</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="">空</a></li>                            
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-globe-2"></i><span class="nav-text">TPM 設備管理</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url_for('table_TPM_checklist') }}">點檢表管理</a></li> 
+                            <li><a href="{{ url_for('table_TPM_checklist') }}">保養單管理</a></li>                      
+                        </ul>
+                    </li> 
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-plug"></i><span class="nav-text">MDS 模具壽命管理</span></a>
+                        <ul aria-expanded="false">                        
+                            <li><a href="{{ url_for('table_MDS') }}">保養單</a></li>
+                        </ul>
+                    </li>   
+                </ul>
+            </div>
+        </div>
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <!--div class="content-body">
+            <div class="container-fluid">                   
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Work Plan Data table</h4>
+                                <div class="col-sm-4 p-md-2 ">                                                                                                   
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}" class="text-gray">SFC 生產管理</a></li>
+                                        <li class="breadcrumb-item active"><a href="{{ url_for('table_workplan') }}" class="text-gray">生產計劃</a></li>                              
+                                    </ol>                                                              
+                                </div>  
+                                <div class="align-items-end">
+                                    <button id="addRowBtn" class="btn btn-primary">新增</button>
+                                    <button id="saveBtn" class="btn btn-success">儲存</button>
+                                </div>                                       
+                            </div>                                                                                         
+                            <div class="card-body">              
+                                <div class="table-responsive">                                     
+                                    <table id="example" class="display" style="min-width: 700px">                                        
+                                        <thead>
+                                            <tr>
+                                                <th onclick="sortTable(0)">Serial<span class="sort-arrow">&#9650;</span></th>
+                                                <th>Plan</th>
+                                                <th>Product</th>
+                                                <th>Number</th>
+                                                <th>Material</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>order</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for workplan in workplans %}
+                                            <tr>
+                                                <td>{{ loop.index }}</td>
+                                                <td>{{ workplan.plan }}</td>
+                                                <td>P01</td>
+                                                <td>2</td>
+                                                <td>M01</td>
+                                                <td>2011/04/25</td>
+                                                <td>12:20</td>
+                                                <td>W01P01M01</td-->
+                                                <!--td>{{ loop.index }}</td>   自增的Serial 
+                                                <td>{{ workplan.plan }}</td>
+                                                <td>{{ workplan.product }}</td>
+                                                <td>{{ workplan.number }}</td>
+                                                <td>{{ workplan.material }}</td>
+                                                <td>{{ workplan.date }}</td>
+                                                <td>{{ workplan.time }}</td>
+                                                <td>{{ workplan.order }}</td-->
+                                            <!--/tr>
+                                            {% endfor %}                                       
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Serial</th>
+                                                <th>Plan</th>
+                                                <th>Product</th>
+                                                <th>Number</th>
+                                                <th>Material</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>order</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>                                                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Work Order Table</h4>
+                                <div>
+                                    <button id="addRowBtn" class="btn btn-primary">新增</button>
+                                    <button id="saveBtn" class="btn btn-secondary">儲存</button>
+                                </div>                 
+                            </div> 
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ url_for('index') }}" class="text-gray">SFC 生產管理</a></li>
+                                <li class="breadcrumb-item active"><a href="{{ url_for('table_workplan') }}" class="text-gray">生產計劃</a></li>                              
+                            </ol>                           
+                            <div class="card-body" >
+                                <div class="table-responsive">
+                                    <table id="sortableTable" class="display" style="min-width: 900px">
+                                        <thead>
+                                        <tr>
+                                            <th onclick="toggleSort(0)">Serial <span class="sort-arrow" id="serialArrow"></span></th>
+                                            <th onclick="toggleSort(1)">Plan <span class="sort-arrow" id="planArrow"></span></th>
+                                            <th onclick="toggleSort(2)">Product <span class="sort-arrow" id="productArrow"></span></th>
+                                            <th onclick="toggleSort(3)">Number <span class="sort-arrow" id="numberArrow"></span></th>
+                                            <th onclick="toggleSort(4)">Material <span class="sort-arrow" id="materialArrow"></span></th>
+                                            <th onclick="toggleSort(5)">Date <span class="sort-arrow" id="dateArrow"></span></th>
+                                            <th onclick="toggleSort(6)">Time <span class="sort-arrow" id="timeArrow"></span></th>
+                                            <th onclick="toggleSort(7)">Order <span class="sort-arrow" id="orderArrow"></span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for workplan in workplans %}
+                                            <tr>
+                                                <td>{{ loop.index }}</td>
+                                                <td>{{ workplan.plan }}</td>
+                                                <td>{{ workplan.product }}</td>
+                                                <td>{{ workplan.number }}</td>
+                                                <td>{{ workplan.material }}</td>
+                                                <td>{{ workplan.date }}</td>
+                                                <td>{{ workplan.time }}</td>
+                                                <td>{{ workplan.order }}</td>
+                                            </tr>
+                                            {% endfor %}                                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="../static/vendor/global/global.min.js"></script>
+    <script src="../static/js/quixnav-init.js"></script>
+    <script src="../static/js/custom.min.js"></script>
+    <script src="../static/toggle.js"></script>
+
+    <!-- Datatable -->
+    <script src="../static/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../static/js/plugins-init/datatables.init.js"></script>
+    <script src="../static/new_workplan.js"></script>
+
+
+</body>
+
+</html>

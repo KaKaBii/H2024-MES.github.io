@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>widget-basic </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/images/DSK-LOGO圖片_1.jpg">
+    <link rel="stylesheet" href="../static/vendor/chartist/css/chartist.min.css">
+    <link href="../static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="main-wrapper">
+        <div class="nav-header">
+            <a href="{{ url_for('index') }}" class="brand-logo">
+                <img class="logo-abbr" src="../static/images/DSK-LOGO去背_10.png" alt="Logo">                
+                <img class="brand-title" src="../static/images/DSK-LOGO去背_12.png" alt="Logo">
+            </a>          
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="header-left">
+                            <div class="search_bar dropdown">
+                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
+                                    <i class="mdi mdi-magnify"></i>
+                                </span>
+                                <div class="dropdown-menu p-0 m-0">
+                                    <form>
+                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="navbar-nav header-right">                           
+                            <li class="nav-item dropdown header-profile">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                    <i class="mdi mdi-account"></i>
+                                </a>
+                                <!-- 如果用戶已登入，顯示Sign out，否則顯示Sign in -->
+                                <div class="dropdown-menu dropdown-menu-right">                                
+                                    {% if session.get('username') %}
+                                    <a href="{{ url_for('index') }}" class="dropdown-item" id="sign-out">
+                                        <i class="icon-key"></i>
+                                        <span class="ml-2">Logout </span>
+                                    </a>
+                                    {% else %}
+                                    <a href="{{ url_for('page_login') }}" class="dropdown-item">
+                                        <i class="icon-key"></i>
+                                        <span class="ml-2">Login </span>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+        <div class="quixnav">
+            <div class="quixnav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Main Menu</li>                    
+                    <li><a href="http://127.0.0.1:1880/ui" target="_blank" aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
+                        class="nav-text">戰情看板</span></a></li>
+                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                            class="icon icon-layout-25"></i><span class="nav-text">SFC 生產管理</span></a>
+                    <ul>
+                        <li><a href="{{ url_for('table_workplan') }}" >生產計劃</a></li>
+
+                        <li><a href="{{ url_for('table_datatable_basic') }}" >來料監控</a></li>
+                        <li><a href="{{ url_for('table_datatable_basic') }}">生產報工</a></li>
+                    </ul>
+                </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">WMS 倉庫管理</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url_for('test') }}">出入庫管理</a></li>                            
+                            <li><a href="{{ url_for('test') }}">庫存管理</a></li>
+                        </ul>
+                    </li>                   
+
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-single-copy-06"></i><span class="nav-text">QMS 品質管理</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url_for('page_register') }}">良率分析</a></li>
+                            <li><a href="{{ url_for('page_login') }}">品檢系統</a></li>                               
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Hi, welcome ! There is home.</h4>
+                            <span class="ml-1">Buttons</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>   
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Statistics</a></li>     
+                        </ol>
+                    </div>
+                </div>
+                <!-- row -->
+
+                <div class="row">
+                    <div class="col-xl-6 col-xxl-6 col-sm-6">
+                        <div class="card bg-primary">
+                            <div class="card-body pb-0">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="text-white">Power</h5>
+                                        <span class="text-white">2017.1.20</span>
+                                    </div>
+                                    <div class="col text-right">
+                                        <h5 class="text-white"><i class="fa fa-caret-up"></i> 260</h5>
+                                        <span class="text-white">+12.5(2.8%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="chart_widget_1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-sm-6">
+                        <div class="card">
+                            <div class="card-body pb-0">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>3650</h5>
+                                        <span>VIEWS OF YOUR PROJECT</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="chart_widget_2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-sm-6">
+                        <div class="card bg-primary">
+                            <div class="card-body pb-0">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="text-white">Power</h5>
+                                        <span class="text-white">2017.1.20</span>
+                                    </div>
+                                    <div class="col text-right">
+                                        <h5 class="text-white"><i class="fa fa-caret-up"></i> 260</h5>
+                                        <span class="text-white">+12.5(2.8%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-wrapper">
+                                <div id="chart_widget_5"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Latency</h5>
+                            </div>
+                            <div class="chart-wrapper">
+                                <div id="chart_widget_17"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-xxl-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row justify-content-between align-items-center">
+                                            <div class="col-auto">
+                                                <h4 class="text-uppercase">74,206 K</h4>
+                                                <span>Lifetime earnings</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="chart-wrapper" style="height: 100px">
+                                                    <canvas id="chart_widget_7"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body pb-0">
+                                        <div class="row justify-content-between">
+                                            <div class="col-auto">
+                                                <h5>Lorem Ipsum</h5>
+                                            </div>
+                                            <div class="col-auto">
+                                                <h5>
+                                                    <span><i class="fa fa-caret-up"></i></span>
+                                                    <span>2,250</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chart-wrapper">
+                                        <div id="chart_widget_6"></div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <h5 class="font-weight-normal">1230</h5>
+                                                <span>Type A</span>
+                                            </div>
+                                            <div class="col text-center">
+                                                <h5 class="font-weight-normal">1230</h5>
+                                                <span>Type A</span>
+                                            </div>
+                                            <div class="col text-center">
+                                                <h5 class="font-weight-normal">1230</h5>
+                                                <span>Type A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body pb-0">
+                                        <div class="row justify-content-between">
+                                            <div class="col-auto">
+                                                <h5>Lorem Ipsum</h5>
+                                            </div>
+                                            <div class="col-auto">
+                                                <h5>
+                                                    <span><i class="fa fa-caret-up"></i></span>
+                                                    <span>2,250</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chart-wrapper">
+                                        <canvas id="chart_widget_3"></canvas>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <h5 class="font-weight-normal">1230</h5>
+                                                <span>Type A</span>
+                                            </div>
+                                            <div class="col text-center">
+                                                <h5 class="font-weight-normal">1230</h5>
+                                                <span>Type A</span>
+                                            </div>
+                                            <div class="col text-center">
+                                                <h5 class="font-weight-normal">1230</h5>
+                                                <span>Type A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body pb-0">
+                                <h4 class="card-title text-uppercase font-weight-normal">Market Now</h4>
+                                <h2 class="font-weight-normal text-danger">
+                                    <span><i class="fa fa-caret-up"></i></span>
+                                    <span>3454664</span>
+                                </h2>
+                                <div class="row mt-5">
+                                    <div class="col text-center">
+                                        <h5 class="font-weight-normal">APPL</h5>
+                                        <span class="text-success">+ 82.24 %</span>
+                                    </div>
+                                    <div class="col text-center">
+                                        <h5 class="font-weight-normal">FB</h5>
+                                        <span class="text-danger">- 12.24 %</span>
+                                    </div>
+                                    <div class="col text-center">
+                                        <h5 class="font-weight-normal">GOOG</h5>
+                                        <span class="text-success">+ 42.24 %</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="chart_widget_4"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body pb-0">
+                                <h4 class="card-title text-uppercase font-weight-normal">Sales Analysis</h4>
+                                <h2 class="font-weight-normal text-danger">
+                                    <span><i class="fa fa-caret-up"></i></span>
+                                    <span>3454664</span>
+                                </h2>
+                                <div class="row mt-5">
+                                    <div class="col text-center">
+                                        <h5 class="font-weight-normal">Today</h5>
+                                        <span class="text-success">+ 8224</span>
+                                    </div>
+                                    <div class="col text-center">
+                                        <h5 class="font-weight-normal">Today</h5>
+                                        <span class="text-danger">- 1224</span>
+                                    </div>
+                                    <div class="col text-center">
+                                        <h5 class="font-weight-normal">Week</h5>
+                                        <span class="text-success">+ 4224</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-wrapper">
+                                <div id="chart_widget_8"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body pb-0">
+                                <h4 class="card-title text-uppercase font-weight-normal">Top Products</h4>
+                                <ul class="mt-5">
+                                    <li class="border-bottom py-3">
+                                        <div class="media">
+                                            
+                                            <div class="media-body d-flex justify-content-between align-items-center ml-3">
+                                                <div>
+                                                    <h6>Mawbeef Halal Beef Burger</h6>
+                                                    <p class="m-0">Beef Burger</p>
+                                                </div>
+                                                <div>
+                                                    <h6>+$17</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="border-bottom py-3">
+                                        <div class="media">
+                                            
+                                            <div class="media-body d-flex justify-content-between align-items-center ml-3">
+                                                <div>
+                                                    <h6>Hamburger</h6>
+                                                    <p class="m-0">A six pack Burger</p>
+                                                </div>
+                                                <div>
+                                                    <h6>+$300</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-3">
+                                        <div class="media">
+                                            
+                                            <div class="media-body d-flex justify-content-between align-items-center ml-3">
+                                                <div>
+                                                    <h6>Vegitable Burger</h6>
+                                                    <p class="m-0">Burger Veggie</p>
+                                                </div>
+                                                <div>
+                                                    <h6>+$300</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="chart_widget_9"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body pb-0">
+                                <h4 class="card-title text-uppercase font-weight-normal">Top Products</h4>
+                                <ul class="mt-5">
+                                    <li class="border-bottom py-3">
+                                        <div class="media">
+                                            
+                                            <div class="media-body d-flex justify-content-between align-items-center ml-3">
+                                                <div>
+                                                    <h6>Mawbeef Halal Beef Burger</h6>
+                                                    <p class="m-0">Beef Burger</p>
+                                                </div>
+                                                <div>
+                                                    <h6>+$17</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="border-bottom py-3">
+                                        <div class="media">
+                                            
+                                            <div class="media-body d-flex justify-content-between align-items-center ml-3">
+                                                <div>
+                                                    <h6>Hamburger</h6>
+                                                    <p class="m-0">A six pack Burger</p>
+                                                </div>
+                                                <div>
+                                                    <h6>+$300</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-3">
+                                        <div class="media">
+                                            
+                                            <div class="media-body d-flex justify-content-between align-items-center ml-3">
+                                                <div>
+                                                    <h6>Vegitable Burger</h6>
+                                                    <p class="m-0">Burger Veggie</p>
+                                                </div>
+                                                <div>
+                                                    <h6>+$300</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="chart_widget_10"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-8 col-lg-6">
+                        <div class="card">
+                            <div class="row no-gutters">
+                                <div class="col-5 p-0">
+                                    <div class="card-body">
+                                        <h6 class="font-weight-normal text-uppercase">Weekly sales</h6>
+                                        <h4>$ 14000</h4>
+                                        <div>
+                                            <span class="badge badge-light">60%</span>
+                                            <span>Higher</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <div class="chart-wrapper">
+                                        <canvas id="chart_widget_11"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>570</h5>
+                                        <p>All Sales</p>
+                                    </div>
+                                    <div class="chart-wrapper">
+                                        <canvas id="chart_widget_14"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>570</h5>
+                                        <p>All Sales</p>
+                                    </div>
+                                    <div class="chart-wrapper">
+                                        <canvas id="chart_widget_15"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-4 col-lg-6">
+                        <div class="card">
+                            <div class="chart-wrapper">
+                                <canvas id="chart_widget_16"></canvas>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Sales Status</h4>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-between">
+                                            <h6>67%</h6>
+                                            <span>Grow</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <div class="d-flex justify-content-between">
+                                            <h6>67%</h6>
+                                            <span>Grow</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <div class="d-flex justify-content-between">
+                                            <h6>67%</h6>
+                                            <span>Grow</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-info" style="width: 40%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <div class="d-flex justify-content-between">
+                                            <h6>67%</h6>
+                                            <span>Grow</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="../static/vendor/global/global.min.js"></script>
+    <script src="../static/js/quixnav-init.js"></script>
+    <script src="../static/js/custom.min.js"></script>
+    
+
+    <!-- Chart ChartJS plugin files -->
+    <script src="../static/vendor/chart.js/Chart.bundle.min.js"></script>
+    <!-- Chartist -->
+    <script src="../static/vendor/chartist/js/chartist.min.js"></script>
+    <script src="../static/vendor/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
+    <!-- Flot -->
+    <script src="../static/vendor/flot/jquery.flot.js"></script>
+    <script src="../static/vendor/flot/jquery.flot.pie.js"></script>
+    <script src="../static/vendor/flot/jquery.flot.resize.js"></script>
+    <script src="../static/vendor/flot-spline/jquery.flot.spline.min.js"></script>
+
+
+    <!-- Init file -->
+    <script src="../static/js/plugins-init/widgets-script-init.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/style.css" rel="stylesheet">
+    <title>表單和表格功能示例</title>
+    <style>
+
+
+        .left-section {
+            width: 50%;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+        }
+        .right-section {
+            width: 50%;
+            padding: 20px;
+        }
+        .accordion-content {
+            display: none;
+            margin-top: 10px;
+        }
+        .accordion-content.active {
+            display: block;
+        }
+
+
+        .form-group label {
+            display: block;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000000;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-test">
+        <div class="left-section">
+            
+            <div class="align-items-end">
+                <button class="btn btn-add" onclick="toggleAccordion()"><span class="ti-plus"></span><span class="icon-name"> 新增項目</span></button>
+                <button class="btn btn-save" onclick="saveItem()"><span class="ti-check"></span></button>
+                <button class="btn btn-close" onclick="clearForm()"><span class="ti-close"></span></button>
+                
+            </div>
+            <div id="accordion-content" class="accordion-content">
+                <div class="form-group">
+                    <label for="itemName">項目名稱</label>
+                    <input type="text" id="itemName">
+                </div>
+                <div class="form-group">
+                    <label for="description">說明</label>
+                    <input type="text" id="description">
+                </div>
+                <div class="form-group">
+                    <label for="inspectionResult">檢驗結果</label>
+                    <select id="inspectionResult">
+                        <option value="pass">通過</option>
+                        <option value="fail">未通過</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="estimatedHours">預計工時 (小時)</label>
+                    <input type="number" id="estimatedHours" min="0">
+                </div>
+                
+            </div>
+        </div>
+        <div class="right-section">
+            <table id="itemTable">
+                <thead>
+                    <tr>
+                        <th>保養內容</th>
+                        <th>紀錄</th>
+                        <th>時間</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 新增的項目將會顯示在這裡 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion() {
+            const accordionContent = document.getElementById('accordion-content');
+            if (accordionContent.classList.contains('active')) {
+                accordionContent.classList.remove('active');
+                resetForm();
+            } else {
+                accordionContent.classList.add('active');
+                document.getElementById('itemName').focus();
+            }
+        }
+
+        function clearForm() {
+            resetForm();
+        }
+
+        function resetForm() {
+            document.getElementById('itemName').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('inspectionResult').value = 'pass';
+            document.getElementById('estimatedHours').value = '';
+        }
+
+        function saveItem() {
+            const itemName = document.getElementById('itemName').value;
+            const description = document.getElementById('description').value;
+            const inspectionResult = document.getElementById('inspectionResult').value;
+            const estimatedHours = document.getElementById('estimatedHours').value;
+            const now = new Date().toLocaleString();
+
+            if (itemName && description && estimatedHours !== '') {
+                const tableBody = document.getElementById('itemTable').getElementsByTagName('tbody')[0];
+                const newRow = tableBody.insertRow();
+                newRow.insertCell(0).textContent = itemName;
+                newRow.insertCell(1).textContent = `${description} - ${inspectionResult}`;
+                newRow.insertCell(2).textContent = now;
+
+                clearForm();
+                toggleAccordion();
+            } else {
+                alert('請填寫所有必填項目。');
+            }
+        }
+    </script>
+</body>
+</html>

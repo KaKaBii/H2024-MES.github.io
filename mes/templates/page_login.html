@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-us" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Login </title>
+    <!-- Favicon icon -->
+    <link href="../static/css/style.css" rel="stylesheet" media="screen">
+    <link rel="icon" href="../static/images/DSK-LOGO圖片_1.jpg" type="image/x-icon">
+</head>
+
+<body class="h-100">
+    <div class="authincation h-100">
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <!--div class="col-md-6">
+                    <div class="authincation-content"-->
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                    <h4 class="text-center mb-4 text-primary">Sign in your account</h4>
+                                    <hr class="divider" />
+                                    <form id="loginForm" action="{{ url_for('page_login') }}" method="post" onsubmit="handleLogin(event)">
+                                        <div class="form-group">
+                                            <label><strong>Username</strong></label>                                    
+                                            <input type="text" class="form-control" id="username" name="username" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>Password</strong></label>
+                                            <input type="password" class="form-control" id="password" name="password" required>
+                                        </div>
+                                        <div class="text-center mt-4">
+                                            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                        </div>                                        
+                                    </form>                                    
+                                    <div class="new-account mt-3">
+                                        <p>Don't have an account? <a href="{{ url_for('page_register') }}" class="text-primary">Sign up</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+
+	<!-- ** JS Plugins Needed for the Project ** -->
+	<!-- jquiry -->
+	<script src="../static/plugins/jquery/jquery-1.12.4.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="../static/plugins/bootstrap/bootstrap.min.js"></script>
+	<!-- match-height JS -->
+	<script src="../static/plugins/match-height/jquery.matchHeight-min.js"></script>
+	<!-- Main Script -->
+	<script src="../static/assets/script.js"></script>
+    <script src="../static/creat_login_accont.js"></script>
+
+</body>
+
+</html>
