@@ -192,7 +192,7 @@
             });
     
             // 初始化 Morris.Bar 圖表
-            Morris.Bar({
+    /*        Morris.Bar({
                 element: 'morris-bar-chart',      // 設定圖表容器
                 data: chartData,                  // 使用你的 JSON 資料
                 xkey: 'date',                     // X 軸為日期
@@ -209,7 +209,7 @@
             alert("獲取或處理數據時出錯。請檢查控制台以獲取更多細節。");
         });
     });
-})(jQuery);
+})(jQuery);*/
 
 (function($) {
     "use strict";

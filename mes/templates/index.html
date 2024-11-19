@@ -79,14 +79,14 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>                    
-                        <li><a href="{{ url_for('index') }}"  aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
+                        <li><a href="https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/edit?usp=sharing"  target="_blank" aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
                             class="nav-text">戰情看板</span></a></li>
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                             class="icon icon-layout-25"></i><span class="nav-text">SFC 生產管理</span></a>
                     <ul>
                         <li><a href="{{ url_for('table_workplan') }}" >生產計劃</a></li>
 
-                        <li><a href="{{ url_for('table_monitor') }}" >來料監控</a></li>                        
+                        <!--li><a href="{{ url_for('table_monitor') }}" >來料監控</a></li-->                        
                     </ul>
                 </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
@@ -130,141 +130,24 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
+        <div class="content-body" style="background: url('../static/images/DSK-LOGO去背_12.png') no-repeat center center; background-size: 500px;">
             <!-- row -->
             <div class="container-fluid">
-                <div class="row page-titles mx-0">
+                <!--div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>戰情看板</h4>
+                            <h4><a href="https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/edit?usp=sharing">戰情看板</a></h4>
                             <span class="ml-1">Buttons</span>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>        
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                         </ol>
                     </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-xl-8 col-lg-8 col-md-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">生產報表-良率</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-12 col-lg-8">
-                                        <div id="morris-bar-chart"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>          
-                    <div class="col-xl-4 col-lg-4 col-md-4">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <div class="m-t-10">
-                                    <h4 class="card-title">工單完成率</h4>
-                                    <h2 class="mt-3">92%</h2>
-                                </div>
-                                <div class="widget-card-circle mt-5 mb-5" id="info-circle-card">
-                                    <i class="ti-control-shuffle pa"></i>
-                                </div>
-                                <ul class="widget-line-list m-b-15">
-                                    <li class="border-right">92 <br><span class="text-success"><i
-                                                class="ti-hand-point-up"></i> 已完工</span></li>
-                                    <li>8 <br><span class="text-danger"><i
-                                                class="ti-hand-point-down"></i>未完工</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>        
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Web Server</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="cpu-load-chart">
-                                    <div id="cpu-load" class="cpu-load"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /# card -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-xl-4 col-xxl-6 col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Timeline</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="widget-timeline">
-                                    <ul class="timeline">
-                                        <li>
-                                            <div class="timeline-badge warning">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>20 minutes ago</span>
-                                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge dark">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>20 minutes ago</span>
-                                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge info">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>30 minutes ago</span>
-                                                <h6 class="m-t-5">Google acquires Youtube.</h6>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-xxl-6 col-xl-4 col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Product Sold</h4>
-                                <div class="card-action">
-                                    <div class="dropdown custom-dropdown">
-                                        <div data-toggle="dropdown">
-                                            <i class="ti-more-alt"></i>
-                                        </div>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Option 1</a>
-                                            <a class="dropdown-item" href="#">Option 2</a>
-                                            <a class="dropdown-item" href="#">Option 3</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart py-4">
-                                    <canvas id="sold-product"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-
+                </div-->
             </div>
         </div>
-    </div>
 
     <!--**********************************
         Scripts
@@ -299,7 +182,7 @@
 
     <script src="../static/js/dashboard/dashboard-1.js"></script>
     <script src="../static/creat_login_accont.js"></script>
-    <script src="../static/get_chart_data.js"></script>
+    <!--script src="../static/get_chart_data.js"></script-->
 
 </body>
 

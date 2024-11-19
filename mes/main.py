@@ -9,8 +9,22 @@ import logging
 import traceback
 import re 
 import os
+import gspread
+from google.oauth2.service_account import Credentials
 
- 
+# 設定 Google Sheets API 授權
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/spreadsheets",
+         "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
+creds = Credentials.from_service_account_file('igneous-walker-441614-j3-891f1d826df2.json', scopes=scope)
+client = gspread.authorize(creds)
+
+
+# 打開 Google Sheet
+spreadsheet_id = "1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94"
+spreadsheet = client.open_by_key(spreadsheet_id)
+worksheet = spreadsheet.worksheet("Production report")
+worksheet2 = spreadsheet.worksheet("Work order completion rate")
+
 
 app = Flask(__name__)
 CORS(app)
@@ -30,6 +44,25 @@ def get_db_connection():
 
         conn = sqlite3.connect('./sql/mes.db')
         conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        # 讀取 workplan 表中的 order, number, date 資料
+        cursor.execute('SELECT "order", "number", "date" FROM workplan')
+        data = cursor.fetchall()
+
+        # 將每個 Row 物件轉換成列表
+        data = [[row[0], row[1], row[2]] for row in data]
+
+        # 清空工作表的 A、B、C 欄中的舊資料
+        ("A2", [["Order", "Quantity", "Date"]])  # 設置標題
+        worksheet.batch_clear(["A3:C"])
+        worksheet2.batch_clear(["A3:C"])
+
+        # 準備要寫入的資料（包括標題行）
+        rows_to_update = [["Order", "Number", "Date"]] + data  # 將標題與資料結合
+
+        # 一次性寫入所有資料，從 A2 欄開始
+        worksheet.update("A2:C" + str(len(rows_to_update) + 1), rows_to_update)
+        worksheet2.update("A2:C" + str(len(rows_to_update) + 1), rows_to_update)
         return conn
     except sqlite3.Error as e:
         logging.error(f"Database connection error: {e}")
@@ -304,7 +337,7 @@ def get_checklist_items():
         conn.close()
 
 # 讀取 Excel 並將其轉換為 JSON 格式
-def read_excel_data():
+'''def read_excel_data():
     # 獲取當前工作目錄
     current_path = os.getcwd()
     print("當前工作目錄:", current_path)
@@ -343,19 +376,19 @@ def read_excel_data():
         except Exception as e:
             print(f"處理日期格式時出錯: {e}")
 
-    return selected_columns.to_dict(orient='list')
+    return selected_columns.to_dict(orient='list')'''
 
 @app.route('/', methods=['GET'])
 def index():
     username = session.get('username')
     return render_template('index.html', username=username)
 
-@app.route('/get_chart_data', methods=['GET'])
+'''@app.route('/get_chart_data', methods=['GET'])
 def get_chart_data():
     data = read_excel_data()
     if not data:
         return jsonify({"error": "無法讀取數據"}), 500
-    return jsonify(data)
+    return jsonify(data)'''
 
 @app.route('/page_login' , methods=['GET', 'POST'])
 def page_login():

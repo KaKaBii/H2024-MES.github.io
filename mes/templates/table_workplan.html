@@ -81,14 +81,14 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>                    
-                    <li><a href="{{ url_for('index') }}"  aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
+                    <li><a href="https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/edit?usp=sharing" target="_blank" aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
                         class="nav-text">戰情看板</span></a></li>
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                             class="icon icon-layout-25"></i><span class="nav-text">SFC 生產管理</span></a>
                     <ul>
                         <li><a href="{{ url_for('table_workplan') }}" >生產計劃</a></li>
 
-                        <li><a href="{{ url_for('table_monitor') }}" >來料監控</a></li>
+                        <!--li><a href="{{ url_for('table_monitor') }}" >來料監控</a></li-->
                         
                     </ul>
                 </li>
@@ -224,7 +224,7 @@
                                 <li class="breadcrumb-item"><a href="{{ url_for('index') }}" class="text-gray">SFC 生產管理</a></li>
                                 <li class="breadcrumb-item active"><a href="{{ url_for('table_workplan') }}" class="text-gray">生產計劃</a></li>                              
                             </ol>                           
-                            <div class="card-body" >
+                            <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="sortableTable" class="display" style="min-width: 900px">
                                         <thead>
@@ -237,6 +237,7 @@
                                             <th onclick="toggleSort(5)">Date <span class="sort-arrow" id="dateArrow"></span></th>
                                             <th onclick="toggleSort(6)">Time <span class="sort-arrow" id="timeArrow"></span></th>
                                             <th onclick="toggleSort(7)">Order <span class="sort-arrow" id="orderArrow"></span></th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -250,6 +251,9 @@
                                                 <td>{{ workplan.date }}</td>
                                                 <td>{{ workplan.time }}</td>
                                                 <td>{{ workplan.order }}</td>
+                                                <td>
+                                                    <button class="action-btn btn btn-primary" onclick="toggleStatus(this)">執行</button>
+                                                </td>
                                             </tr>
                                             {% endfor %}                                       
                                         </tbody>
@@ -261,6 +265,25 @@
                 </div>
             </div>
         </div>
+        
+        <script>
+            function toggleStatus(button) {
+                if (button.textContent === "執行") {
+                    button.textContent = "加工中";
+                    button.classList.remove("btn-primary");
+                    button.classList.add("btn-warning");
+                } else if (button.textContent === "加工中") {
+                    button.textContent = "已完工";
+                    button.classList.remove("btn-warning");
+                    button.classList.add("btn-success");
+                } else {
+                    button.textContent = "執行";
+                    button.classList.remove("btn-success");
+                    button.classList.add("btn-primary");
+                }
+            }
+        </script>
+        
           
         <!--**********************************
             Content body end

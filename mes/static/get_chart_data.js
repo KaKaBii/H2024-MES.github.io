@@ -31,6 +31,6 @@ $(document).ready(function() {
     }).fail(function(jqxhr, textStatus, error) {
         var err = textStatus + ", " + error;
         console.error("請求失敗: " + err);
-        alert("獲取或處理數據時出錯。請檢查控制台以獲取更多細節。");
+        //alert("獲取或處理數據時出錯。請檢查控制台以獲取更多細節。");
     });
 });
