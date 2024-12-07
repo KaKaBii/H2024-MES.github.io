@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>IMT</title>
+    <title>OMT</title>
     <!-- Favicon icon -->
     
     <link rel="icon" type="image/png" sizes="16x16" href="../static/images/DSK-LOGO圖片_1.jpg">
@@ -15,7 +15,12 @@
     <link href="../static/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link href="../static/css/style.css" rel="stylesheet">
-
+    <style>
+        .editable-cell input {
+            width: 100%;
+            border: none;
+        }
+    </style>
 
 </head>
 
@@ -106,6 +111,7 @@
                                 class="icon icon-single-copy-06"></i><span class="nav-text">QMS 品質管理</span></a>
                         <ul aria-expanded="false">
                             <li><a href="{{ url_for('page_register') }}">良率分析</a></li>
+                            <li><a href="{{ url_for('page_login') }}">品檢系統</a></li>                               
                         </ul>
                     </li>
 
@@ -142,15 +148,15 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>IMT table</h4>
+                                <h4>OMT table</h4>
                                 <div>
-                                    <button id="add_IMTrowBtn" class="btn btn-primary">新增</button>
-                                    <button id="save_IMTBtn" class="btn btn-secondary">儲存</button>
+                                    <button id="add_OMTrowBtn" class="btn btn-primary">新增</button>
+                                    <button id="save_OMTBtn" class="btn btn-secondary">儲存</button>
                                 </div>                 
                             </div> 
                             <div class="card-body">
                                 <div class="table-responsive">                                
-                                    <table class="display" id="IMT_Table" style="min-width: 900px" >
+                                    <table class="display" id="OMT_Table" style="min-width: 900px" >
                                         <thead>
                                             <tr>
                                                 <!-- 標題欄位將動態插入 -->
@@ -177,11 +183,11 @@
         
             // 載入 Google Sheet 資料
             function loadGoogleSheet() {
-                const table = document.getElementById("IMT_Table");
+                const table = document.getElementById("OMT_Table");
                 const thead = table.querySelector("thead tr");
                 const tbody = table.querySelector("tbody");
         
-                const csvUrl = "https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/export?format=csv&gid=237539222";
+                const csvUrl = "https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/export?format=csv&gid=685601121";
         
                 fetch(csvUrl)
                     .then(response => response.text())
@@ -211,8 +217,8 @@
             }
         
             // 按下新增按鈕時，在第一列插入輸入框
-            document.getElementById("add_IMTrowBtn").addEventListener("click", () => {
-                const table = document.getElementById("IMT_Table");
+            document.getElementById("add_OMTrowBtn").addEventListener("click", () => {
+                const table = document.getElementById("OMT_Table");
                 const tbody = table.querySelector("tbody");
         
                 const tr = document.createElement("tr");
@@ -233,7 +239,7 @@
             });
         
             // 按下儲存按鈕時
-            document.getElementById("save_IMTBtn").addEventListener("click", () => {
+            document.getElementById("save_OMTBtn").addEventListener("click", () => {
                 if (newRow) {
                     const product = document.getElementById("productInput").value;
                     const people = document.getElementById("peopleInput").value;
@@ -272,7 +278,7 @@
                         newRow.querySelector("#totalInput").disabled = true;
         
                         // 將新增的資料行插入到表格中
-                        const tbody = document.querySelector("#IMT_Table tbody");
+                        const tbody = document.querySelector("#OMT_Table tbody");
                         tbody.appendChild(newRow);
         
                        

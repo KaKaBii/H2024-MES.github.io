@@ -1391,18 +1391,18 @@ pre {
 
 
 
-    table #sortableTable,#checktable {
+    table #sortableTable,#checktable , #IMT_Table,#OMT_Table ,#NG_Table ,#OK_Table #QMS_Table{
       padding: 3rem 0 4rem 0; }
     
-    #sortableTable th, #sortableTable td,#checktable th, #checktable td {
+    #sortableTable th, #sortableTable td,#checktable th, #checktable td ,#IMT_Table th, #IMT_Table td,#OMT_Table th, #OMT_Table td #NG_Table th, #NG_Table td #OK_Table th, #OK_Table td ,#QMS_Table th, #QMS_Table td{
       padding: 12px; /* 調整 padding 的值，根據需要設置 */
       text-align: left;
     }
     
-    #sortableTable td,#checktable td {
+    #sortableTable td,#checktable td, #IMT_Table td ,#OMT_Table td ,#NG_Table td ,#OK_Table td, #QMS_Table td {
       border-bottom: 1px solid #ddd; /* 添加灰色水平線 */
     }
-    #sortableTable th,#checktable th {
+    #sortableTable th,#checktable th ,#IMT_Table th,#OMT_Table th ,#NG_Table th ,#OK_Table th ,#QMS_Table th{
         cursor: pointer;
         position: relative;
     }
@@ -8298,6 +8298,36 @@ a {
   background-color:#6caa9d;
   transition: all .2s ease;
   z-index: 4; }
+
+  .sidebar-hide .logo {
+    width: 0;
+  }
+  .sidebar-hide .logo span {
+    display: none;
+  }
+  /*  Responsive*/
+@media (min-width: 320px) and (max-width: 679px) {
+  .sidebar {
+    top: 50px;
+  }
+}
+/**
+ * PRINT STYLE
+ */
+ @media print {
+  .header,
+  .sidebar,
+  .chat-sidebar,
+  .control,
+  .control-bar {
+    display: none !important;
+  }
+  [contenteditable]:hover,
+  [contenteditable]:focus {
+    outline: none;
+  }
+}
+
   .nav-header .logo-abbr {
     margin-left: 2px;
     max-width: 50px; }
@@ -11659,6 +11689,14 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         width: 35px;
         height: 35px;
         margin-bottom: 10px; } }
+
+
+/*  Responsive*/
+@media (min-width: 320px) and (max-width: 679px) {
+  .sidebar {
+    top: 50px;
+  }
+}
   .nav-user h5 {
     margin-left: 10px;
     margin-bottom: 3px;
@@ -17020,32 +17058,32 @@ table#example {
   padding: 3rem 0 4rem 0;
   max-height: 33.25rem !important; }
 
-table #sortableTable ,#checktable{
+table #sortableTable ,#checktable ,#IMT_Table,#OMT_Table, #NG_Table , #OK_Table,#QMS_Table{
   padding: 3rem 0 4rem 0; }
 
-#sortableTable th, #sortableTable td,#checktable th, #checktable td {
+#sortableTable th, #sortableTable td,#checktable th, #checktable td ,#IMT_Table th, #IMT_Table td,#OMT_Table th, #OMT_Table td ,#NG_Table th, #NG_Table td ,#OK_Table th, #OK_Table td,#QMS_Table th, #QMS_Table td{
   padding: 12px; /* 調整 padding 的值，根據需要設置 */
   text-align: left;
 }
 
 /* 懸浮時改變背景顏色 */
-#checktable tbody tr:hover {
+#checktable tbody tr:hover,#QMS_Table tbody tr:hover {
   color: #002629;
   background-color: palegoldenrod; /* 懸浮時的背景顏色 */
   cursor: pointer; /* 鼠標變為指針 */
 }
 
 /* 點擊激活時改變背景顏色 */
-#checktable tbody tr:active {
+#checktable tbody tr:active,#QMS_Table tbody tr:active {
   background-color: palegoldenrod; /* 激活時的背景顏色 */
   box-shadow: 0 0 0 0.1rem palegoldenrod; 
 }
 
 
-#sortableTable td ,#checktable td{
+#sortableTable td ,#checktable td,#IMT_Table td,#OMT_Table td,#NG_Table td ,#OK_Table td,#QMS_Table td{
   border-bottom: 1px solid #ddd; /* 添加灰色水平線 */
 }
-#sortableTable th ,#checktable th{
+#sortableTable th ,#checktable th,#IMT_Table th,#OMT_Table th,#NG_Table th ,#OK_Table th,#QMS_Table th{
     cursor: pointer;
     position: relative;
 }

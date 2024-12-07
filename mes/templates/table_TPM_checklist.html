@@ -82,49 +82,50 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>                    
-                    <li><a href="https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/edit?usp=sharing"  target="_blank"  aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
-                        class="nav-text">戰情看板</span></a></li>
+                        <li><a href="https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/edit?usp=sharing"  target="_blank" aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
+                            class="nav-text">戰情看板</span></a></li>
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                             class="icon icon-layout-25"></i><span class="nav-text">SFC 生產管理</span></a>
                     <ul>
-                        <li><a href="{{ url_for('table_workplan') }}" >生產計劃</a></li>
-
+                        <li><a href="{{ url_for('table_workplan') }}" >生產計劃</a></li>                 
                     </ul>
                 </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">WMS 倉庫管理</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="">庫存填報</a></li>                            
-                            <li><a href="">庫存管理</a></li>
+                            <li><a href="{{ url_for('R_table_IMT') }}">入庫管理</a></li>
+                            <li><a href="{{ url_for('R_table_OMT') }}">出庫管理</a></li>                               
+                            <li><a href="{{ url_for('R_table_NG') }}">報廢管理</a></li>
+                            <li><a href="{{ url_for('R_table_OK') }}">出貨管理</a></li>
                         </ul>
                     </li>                   
 
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-copy-06"></i><span class="nav-text">QMS 品質管理</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url_for('page_register') }}">良率分析</a></li>
-                            <li><a href="{{ url_for('page_login') }}">品檢系統</a></li>                               
+                            <li><a href="{{ url_for('R_table_QMS') }}">良率分析</a></li>                           
                         </ul>
                     </li>
+
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-form"></i><span class="nav-text">SPM 備品管理</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="">空</a></li>                            
+                            <li><a href="{{ url_for('chart_data') }}">空</a></li>                            
                         </ul>
                     </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-globe-2"></i><span class="nav-text">TPM 設備管理</span></a>
                         <ul aria-expanded="false">
                             <li><a href="{{ url_for('table_TPM_checklist') }}">點檢表管理</a></li> 
-                            <li><a href="">保養單管理</a></li>
+                            <li><a href="{{ url_for('table_MT') }}">保養單管理</a></li>                      
                         </ul>
                     </li> 
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-plug"></i><span class="nav-text">MDS 模具壽命管理</span></a>
                         <ul aria-expanded="false">                        
-                            <li><a href="">保養單</a></li>
+                            <li><a href="{{ url_for('table_MDS') }}">保養單</a></li>
                         </ul>
-                    </li>     
+                    </li>    
                 </ul>
             </div>
         </div>

@@ -491,11 +491,25 @@ def table_TPM_checklist():
         return redirect(url_for('page_login'))
 #保養單html
 
+@app.route('/R_table_QMS.html')
+def R_table_QMS():
+    return render_template('R_table_QMS.html')
 
+@app.route('/table_MDS.html')
+def table_MDS():
+    return render_template('table_MDS.html')
+
+@app.route('/table_MT.html')
+def table_MT():
+    return render_template('table_MT.html')
 
 @app.route('/R_table_IMT.html')
 def R_table_IMT():
     return render_template('R_table_IMT.html')
+
+@app.route('/R_table_OMT.html')
+def R_table_OMT():
+    return render_template('R_table_OMT.html')
 
 @app.route('/R_table_OK.html')
 def R_table_OK():

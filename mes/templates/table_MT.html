@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>TPM_checklist</title>
+    <title>MT_checklist</title>
     <!-- Favicon icon -->
     
     <link rel="icon" type="image/png" sizes="16x16" href="../static/images/DSK-LOGO圖片_1.jpg">
@@ -82,42 +82,42 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>                    
-                    <li><a href="https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/edit?usp=sharing"  target="_blank"  aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
-                        class="nav-text">戰情看板</span></a></li>
+                        <li><a href="https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/edit?usp=sharing"  target="_blank" aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
+                            class="nav-text">戰情看板</span></a></li>
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                             class="icon icon-layout-25"></i><span class="nav-text">SFC 生產管理</span></a>
                     <ul>
-                        <li><a href="{{ url_for('table_workplan') }}" >生產計劃</a></li>
-
-                        <!--li><a href="{{ url_for('table_monitor') }}" >來料監控</a></li-->
+                        <li><a href="{{ url_for('table_workplan') }}" >生產計劃</a></li>                 
                     </ul>
                 </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">WMS 倉庫管理</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url_for('table_WMS') }}">庫存填報</a></li>                            
-                            <li><a href="{{ url_for('table_WMS') }}">庫存管理</a></li>
+                            <li><a href="{{ url_for('R_table_IMT') }}">入庫管理</a></li>
+                            <li><a href="{{ url_for('R_table_OMT') }}">出庫管理</a></li>                               
+                            <li><a href="{{ url_for('R_table_NG') }}">報廢管理</a></li>
+                            <li><a href="{{ url_for('R_table_OK') }}">出貨管理</a></li>
                         </ul>
                     </li>                   
 
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-copy-06"></i><span class="nav-text">QMS 品質管理</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url_for('page_register') }}">良率分析</a></li>
-                            <li><a href="{{ url_for('page_login') }}">品檢系統</a></li>                               
+                            <li><a href="{{ url_for('R_table_QMS') }}">良率分析</a></li>                           
                         </ul>
                     </li>
+
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-form"></i><span class="nav-text">SPM 備品管理</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="">空</a></li>                            
+                            <li><a href="{{ url_for('chart_data') }}">空</a></li>                            
                         </ul>
                     </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-globe-2"></i><span class="nav-text">TPM 設備管理</span></a>
                         <ul aria-expanded="false">
                             <li><a href="{{ url_for('table_TPM_checklist') }}">點檢表管理</a></li> 
-                            <li><a href="{{ url_for('table_MT') }}">保養單管理</a></li>
+                            <li><a href="{{ url_for('table_MT') }}">保養單管理</a></li>                      
                         </ul>
                     </li> 
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
@@ -125,7 +125,7 @@
                         <ul aria-expanded="false">                        
                             <li><a href="{{ url_for('table_MDS') }}">保養單</a></li>
                         </ul>
-                    </li>     
+                    </li>    
                 </ul>
             </div>
         </div>
@@ -133,115 +133,235 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">保養單管理</h4>
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <!--div class="row"-->
+        <div class="row"><div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">保養單管理</h4>
+                </div>
+                <div class="card-body">
+                    <div id="accordion-five" class="accordion accordion-left-indicator">
+                        <div class="accordion__item">
+                            <div class="accordion__header" id="accordion_creat" data-toggle="collapse" data-target="#left-indicator_collapseOne" onclick="handleAddChecklistClick()">
+                                <span class="accordion__header--text">新增保養單</span>
+                                <span class="accordion__header--indicator"></span>
                             </div>
-                            <div class="card-body">
-                                <div id="accordion-maintenance" class="accordion accordion-left-indicator">
-                                    <div class="accordion__item">
-                                        <div class="accordion__header" id="accordion_create_maintenance" data-toggle="collapse" data-target="#left-indicator_collapseOne" onclick="handleAddMaintenanceClick()">
-                                            <span class="accordion__header--text">新增保養單</span>
-                                            <span class="accordion__header--indicator"></span>
+                            <div id="left-indicator_collapseOne" class="collapse accordion__body" data-parent="#accordion-five">
+                                <div class="accordion__body--text" class="form-group row">    
+                                
+                                        <input type="text" id="tableName" class="form-control" placeholder="保養單名稱">
+
+                                </div>
+                                      
+                                    
+
+                                <div class="accordion__body--text" > 
+
+                                    <div class="align-items-end">
+                                        <button class="btn btn-add" onclick="toggleAccordion()"><span class="ti-plus"></span><span class="icon-name"> 新增項目</span></button>
+                                        <button class="btn btn-save" onclick="saveItem()"><span class="ti-check"></span></button>
+                                        <button class="btn btn-close" onclick="clearForm()"><span class="ti-close"></span></button>    
+                                        <button class="btn btn-save" onclick="saveChecklist(),loadCheckTable()">儲存保養單</button>
+                                    </div>
+                                    <div id="accordion-content" class="accordion__body--text">
+                                        <div class="form-group">
+                                            <input type="text" id="itemName"class="form-control" placeholder="項目名稱">
                                         </div>
-                                        <div id="left-indicator_collapseOne" class="collapse accordion__body" data-parent="#accordion-maintenance">
-                                            <div class="accordion__body--text">
-                                                <input type="text" id="maintenanceTableName" class="form-control" placeholder="保養單名稱">
-                                            </div>
-                                            <div class="accordion__body--text">
-                                                <button class="btn btn-add" onclick="toggleMaintenanceAccordion()"><span class="ti-plus"></span><span class="icon-name"> 新增項目</span></button>
-                                                <button class="btn btn-save" onclick="saveMaintenanceItem()"><span class="ti-check"></span></button>
-                                                <button class="btn btn-close" onclick="clearMaintenanceForm()"><span class="ti-close"></span></button>
-                                                <button class="btn btn-save" onclick="saveMaintenanceSheet()">儲存保養單</button>
-                                            </div>
-                                            <div id="accordion-maintenance-content" class="accordion__body--text">
-                                                <div class="form-group">
-                                                    <input type="text" id="maintenanceItemName" class="form-control" placeholder="項目名稱">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" id="maintenanceDescription" class="form-control" placeholder="說明">
-                                                </div>
-                                                <div class="form-group">
-                                                    <select id="maintenanceMethod" class="form-control">
-                                                        <option value="" disabled selected hidden>檢驗方式</option>
-                                                        <option value="check">勾選</option>
-                                                        <option value="text">文字</option>
-                                                        <option value="number">數值</option>
-                                                        <option value="option">選項</option>
-                                                        <option value="file">檔案</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="number" id="maintenanceEstimatedHours" min="0" class="form-control" placeholder="預計工時(s)">
-                                                </div>
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" id="description" class="form-control"placeholder="說明">
+                                        </div>
+                                        <div class="form-group">
+                                            <select id="inspectionResult" class="form-control" >
+                                                <option value="" disabled selected hidden>檢驗結果</option>
+                                                <option value="check">勾選</option>
+                                                <option value="test">文字</option>
+                                                <option value="number">數值</option>
+                                                <option value="chosen">選項</option>
+                                                <option value="file">檔案</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" id="estimatedHours" min="0" class="form-control" placeholder="預計工時(s)">
                                         </div>
                                     </div>
                                 </div>
+ 
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">預覽保養單</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <div id="maintenanceItemTablePreview">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>保養內容</th>
-                                                    <th>說明</th>
-                                                    <th>紀錄方式</th>
-                                                    <th>時間 (S)</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="maintenanceItemTable">
-                                                <!-- 這裡會動態顯示保養項目 -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    
-                                    <script>
-                                        async function saveMaintenanceSheet() {
-                                            const tableName = document.getElementById('maintenanceTableName').value;
-                                            const items = [];
-                                            const rows = document.querySelectorAll('#maintenanceItemTable tbody tr');
-                                            
-                                            rows.forEach(row => {
-                                                items.push({
-                                                    itemName: row.cells[0].textContent,
-                                                    description: row.cells[1].textContent,
-                                                    method: row.cells[2].textContent,
-                                                    estimatedTime: row.cells[3].textContent
-                                                });
-                                            });
-                                    
-                                            const response = await fetch('/api/saveMaintenance', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type': 'application/json'
-                                                },
-                                                body: JSON.stringify({
-                                                    tableName: tableName,
-                                                    items: items
-                                                })
-                                            });
-                                    
-                                            const result = await response.json();
-                                            if (result.status === 'success') {
-                                                alert('保養單儲存成功');
-                                            } else {
-                                                alert('儲存失敗: ' + result.message);
-                                            }
-                                        }
-                                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">預覽保養表</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table mb-0" id="itemTable">
+                            <thead>
+                                <tr>
+                                    <th>保養內容</th>
+                                    <th>說明</th>
+                                    <th>紀錄方式</th>
+                                    <th>時間 (S)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 新增的項目將會顯示在這裡 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-15">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Checklist Table</h4>              
+                    </div>                  
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="checktable" class="display" style="min-width: 900px">
+                                <thead>
+                                    <tr>
+                                        <th onclick="toggleSort(0)">Serial <span class="sort-arrow" id="serialArrow"></span></th>
+                                        <th onclick="toggleSort(1)">Table Name <span class="sort-arrow" id="tablenameArrow"></span></th>
+                                        <th onclick="toggleSort(2)">Create Date <span class="sort-arrow" id="credateArrow"></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for table in checktables %}
+                                    <tr onclick="renderTable('{{ table.table_name }}')"> <!-- 這裡使用了 workplan.plan 作為參數 -->
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ table.table_name }}</td>
+                                        <td>{{ table.time }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <script>
+        // Enhanced function to load checktable data
+        async function loadCheckTable() {
+            showLoadingIndicator(); // Optional: show a loading indicator
+            try {
+                const response = await fetch('/api/get_checktable');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                renderTable(data);
+            } catch (error) {
+                console.error('Error loading checklists table:', error);
+                displayErrorMessage('Failed to load checklists data. Please try again later.');
+            } finally {
+                hideLoadingIndicator(); // Optional: hide the loading indicator
+            }
+        }
+
+        // Function to render table rows
+        function renderTable(data) {
+
+            const tbody = document.querySelector('#checktable tbody');
+            tbody.innerHTML = ''; // Clear existing content
+
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${row.serial}</td>
+                    <td>${row.table_name}</td>
+                    <td>${row.create_date}</td>
+                `;
+
+                        // Add click event to each row
+                tr.addEventListener('click', () => {
+                    loadChecklistItems(row.table_name);
+                });
+                tbody.appendChild(tr);
+            });
+        }
+
+
+
+        // Function to load checklist items based on selected table name
+        function loadChecklistItems(tableName) {
+            fetch(`/api/get_checklist_items?table_name=${tableName}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => renderChecklistTable(data))
+                .catch(error => {
+                    console.error('Error loading checklists items:', error);
+                    displayErrorMessage('Failed to load checklists items. Please try again later.');
+                });
+        }
+
+        // Function to render checklist items in the preview table
+        function renderChecklistTable(data) {
+            const tbody = document.getElementById('itemTable').querySelector('tbody');
+            tbody.innerHTML = ''; // Clear existing content
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.item_name}</td>
+                    <td>${item.description}</td>
+                    <td>${item.checkway}</td>
+                    <td>${item.timestamp}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Function to display error messages to the user
+        function displayErrorMessage(message) {
+            const errorDiv = document.getElementById('error-message');
+            if (errorDiv) {
+                errorDiv.innerText = message;
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        // Optional: Functions to show/hide loading indicator
+        function showLoadingIndicator() {
+            const loadingDiv = document.getElementById('loading-indicator');
+            if (loadingDiv) {
+                loadingDiv.style.display = 'block';
+            }
+        }
+
+        function hideLoadingIndicator() {
+            const loadingDiv = document.getElementById('loading-indicator');
+            if (loadingDiv) {
+                loadingDiv.style.display = 'none';
+            }
+        }
+
+        // Call loadCheckTable when the window loads
+        window.onload = loadCheckTable;
+
+
+    </script>
     
         <!--**********************************
             Content body end
@@ -266,7 +386,7 @@
     <!-- Datatable -->
     <script src="../static/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../static/js/plugins-init/datatables.init.js"></script>
-    <script src="../static/MT_checklist.js"></script>
+    <script src="../static/TPM_checklist.js"></script>
 
 
 </body>

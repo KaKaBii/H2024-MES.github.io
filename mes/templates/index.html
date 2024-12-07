@@ -18,7 +18,7 @@
                 <img class="brand-title" src="../static/images/DSK-LOGO去背_12.png" alt="Logo">
             </a>          
             <div class="nav-control">
-                <div class="hamburger">
+                <div class="hamburger sidebar-toggle is-active">
                     <span class="line"></span><span class="line"></span><span class="line"></span>
                 </div>
             </div>
@@ -90,7 +90,8 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">WMS 倉庫管理</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url_for('R_table_IMT') }}">出入庫管理</a></li>                            
+                            <li><a href="{{ url_for('R_table_IMT') }}">入庫管理</a></li>
+                            <li><a href="{{ url_for('R_table_OMT') }}">出庫管理</a></li>                               
                             <li><a href="{{ url_for('R_table_NG') }}">報廢管理</a></li>
                             <li><a href="{{ url_for('R_table_OK') }}">出貨管理</a></li>
                         </ul>
@@ -99,8 +100,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-copy-06"></i><span class="nav-text">QMS 品質管理</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url_for('page_register') }}">良率分析</a></li>
-                            <li><a href="{{ url_for('page_login') }}">品檢系統</a></li>                               
+                            <li><a href="{{ url_for('R_table_QMS') }}">良率分析</a></li>                           
                         </ul>
                     </li>
 
@@ -114,13 +114,13 @@
                         class="icon icon-globe-2"></i><span class="nav-text">TPM 設備管理</span></a>
                         <ul aria-expanded="false">
                             <li><a href="{{ url_for('table_TPM_checklist') }}">點檢表管理</a></li> 
-                            <li><a href="">保養單管理</a></li>                      
+                            <li><a href="{{ url_for('table_MT') }}">保養單管理</a></li>                      
                         </ul>
                     </li> 
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-plug"></i><span class="nav-text">MDS 模具壽命管理</span></a>
                         <ul aria-expanded="false">                        
-                            <li><a href="">保養單</a></li>
+                            <li><a href="{{ url_for('table_MDS') }}">保養單</a></li>
                         </ul>
                     </li>    
                 </ul>
