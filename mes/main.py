@@ -495,6 +495,14 @@ def table_TPM_checklist():
 def R_table_QMS():
     return render_template('R_table_QMS.html')
 
+@app.route('/R_table_SPM.html')
+def R_table_SPM():
+    return render_template('R_table_SPM.html')
+
+@app.route('/R_table_SPM_copy.html')
+def R_table_SPM_copy():
+    return render_template('R_table_SPM_copy.html')
+
 @app.route('/table_MDS.html')
 def table_MDS():
     return render_template('table_MDS.html')

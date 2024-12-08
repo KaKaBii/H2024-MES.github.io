@@ -350,7 +350,7 @@ sup {
   top: -.5em; }
 
 a {
-  color: #6caa9d;
+  color: var(--secondary-color);
   text-decoration: none;
   background-color: transparent; }
   a:hover {
@@ -1391,18 +1391,18 @@ pre {
 
 
 
-    table #sortableTable,#checktable , #IMT_Table,#OMT_Table ,#NG_Table ,#OK_Table #QMS_Table{
+    table #sortableTable,#checktable , #IMT_Table,#OMT_Table ,#NG_Table ,#OK_Table #QMS_Table,#SPM_Table,#example{
       padding: 3rem 0 4rem 0; }
     
-    #sortableTable th, #sortableTable td,#checktable th, #checktable td ,#IMT_Table th, #IMT_Table td,#OMT_Table th, #OMT_Table td #NG_Table th, #NG_Table td #OK_Table th, #OK_Table td ,#QMS_Table th, #QMS_Table td{
+    #sortableTable th, #sortableTable td,#checktable th, #checktable td ,#IMT_Table th, #IMT_Table td,#OMT_Table th, #OMT_Table td #NG_Table th, #NG_Table td #OK_Table th, #OK_Table td ,#QMS_Table th, #QMS_Table td,#SPM_Table th, #SPM_Table td, #example th, #example td {
       padding: 12px; /* 調整 padding 的值，根據需要設置 */
       text-align: left;
     }
     
-    #sortableTable td,#checktable td, #IMT_Table td ,#OMT_Table td ,#NG_Table td ,#OK_Table td, #QMS_Table td {
+    #sortableTable td,#checktable td, #IMT_Table td ,#OMT_Table td ,#NG_Table td ,#OK_Table td, #QMS_Table td ,#SPM_Table td, #example td {
       border-bottom: 1px solid #ddd; /* 添加灰色水平線 */
     }
-    #sortableTable th,#checktable th ,#IMT_Table th,#OMT_Table th ,#NG_Table th ,#OK_Table th ,#QMS_Table th{
+    #sortableTable th,#checktable th ,#IMT_Table th,#OMT_Table th ,#NG_Table th ,#OK_Table th ,#QMS_Table th,#SPM_Table th, #example th {
         cursor: pointer;
         position: relative;
     }
@@ -3413,9 +3413,10 @@ input[type="button"].btn-block {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem; }
+  padding: 0.5rem 1rem;
+  color: var(--primary); }
   .nav-link:hover, .nav-link:focus {
-    text-decoration: none; }
+    text-decoration: underline; }
   .nav-link.disabled {
     color: #6c757d;
     pointer-events: none;
@@ -12329,12 +12330,12 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   [data-theme-version="dark"] h6 {
     color: #fff !important; }
   [data-theme-version="dark"] a.link {
-    color: #ddd; }
+    color: #007bb6; }
   [data-theme-version="dark"] a.link:focus,
   [data-theme-version="dark"] a.link:hover {
-    color: #50E3C2; }
+    color: var(--primary); }
   [data-theme-version="dark"] a {
-    color: #fff; }
+    color: #007bb6; }
     [data-theme-version="dark"] a:hover {
       color: #828690; }
   [data-theme-version="dark"] .border-right {
@@ -12376,7 +12377,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     color: #fff; }
 
 [data-theme-version="dark"] .header-right .dropdown .nav-link:hover {
-  color: #fff; }
+  color: var(--primary); }
 
 [data-theme-version="dark"] .header-right .notification_dropdown .dropdown-item a {
   color: #fff; }
@@ -12431,7 +12432,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     background-color: #31343b;
     border-bottom: 1px solid #2A2C32; }
     [data-theme-version="dark"] .sidebar-right .nav-tabs .nav-link.active {
-      background-color: #2A2C32; }
+      background-color: var(--primary); }
 
 [data-theme-version="dark"] .footer {
   background-color: transparent; }
@@ -12456,10 +12457,10 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   [data-theme-version="transparent"] h6 {
     color: #fff !important; }
   [data-theme-version="transparent"] a.link {
-    color: #ddd; }
+    color: var(--primary); }
   [data-theme-version="transparent"] a.link:focus,
   [data-theme-version="transparent"] a.link:hover {
-    color: #50E3C2; }
+    color: var(--secondary); }
   [data-theme-version="transparent"] a {
     color: #fff; }
     [data-theme-version="transparent"] a:hover {
@@ -17064,42 +17065,50 @@ button {
     .bootgrid-header .search {
       margin: 0 0 10px 0; } }
 
-table#example {
+table#example, table#SPM_Table{
   padding: 3rem 0 4rem 0;
   max-height: 33.25rem !important; }
 
-table #sortableTable ,#checktable ,#IMT_Table,#OMT_Table, #NG_Table , #OK_Table,#QMS_Table{
+table #sortableTable ,#checktable ,#IMT_Table,#OMT_Table, #NG_Table , #OK_Table,#QMS_Table,#SPM_Table,#example{
   padding: 3rem 0 4rem 0; }
 
-#sortableTable th, #sortableTable td,#checktable th, #checktable td ,#IMT_Table th, #IMT_Table td,#OMT_Table th, #OMT_Table td ,#NG_Table th, #NG_Table td ,#OK_Table th, #OK_Table td,#QMS_Table th, #QMS_Table td{
+#sortableTable th, #sortableTable td,#checktable th, #checktable td ,#IMT_Table th, #IMT_Table td,#OMT_Table th, #OMT_Table td ,#NG_Table th, #NG_Table td ,#OK_Table th, #OK_Table td,#QMS_Table th, #QMS_Table td,#SPM_Table th, #SPM_Table td,#example th, #example td{
   padding: 12px; /* 調整 padding 的值，根據需要設置 */
   text-align: left;
 }
+#IMT_Table td a{
+  color: var(--secondary); 
+  text-decoration: underline; 
+}
+#IMT_Table td a:hover, #IMT_Table td a:focus {
+    text-decoration: underline; }
+ 
+
 
 /* 懸浮時改變背景顏色 */
-#checktable tbody tr:hover,#QMS_Table tbody tr:hover {
+#checktable tbody tr:hover,#QMS_Table tbody tr:hover ,#SPM_Table tbody tr:hover,#example tbody tr:hover{
   color: #002629;
   background-color: palegoldenrod; /* 懸浮時的背景顏色 */
   cursor: pointer; /* 鼠標變為指針 */
 }
 
 /* 點擊激活時改變背景顏色 */
-#checktable tbody tr:active,#QMS_Table tbody tr:active {
+#checktable tbody tr:active,#QMS_Table tbody tr:active,#SPM_Table tbody tr:active,#example tbody tr:active{
   background-color: palegoldenrod; /* 激活時的背景顏色 */
   box-shadow: 0 0 0 0.1rem palegoldenrod; 
 }
 
 
-#sortableTable td ,#checktable td,#IMT_Table td,#OMT_Table td,#NG_Table td ,#OK_Table td,#QMS_Table td{
+#sortableTable td ,#checktable td,#IMT_Table td,#OMT_Table td,#NG_Table td ,#OK_Table td,#QMS_Table td,#SPM_Table td,#example td{
   border-bottom: 1px solid #ddd; /* 添加灰色水平線 */
 }
-#sortableTable th ,#checktable th,#IMT_Table th,#OMT_Table th,#NG_Table th ,#OK_Table th,#QMS_Table th{
+#sortableTable th ,#checktable th,#IMT_Table th,#OMT_Table th,#NG_Table th ,#OK_Table th,#QMS_Table th,#SPM_Table th,#example th{
     cursor: pointer;
     position: relative;
 }
 
 
-#example2_wrapper .dataTables_scrollBody {
+#example2_wrapper .dataTables_scrollBody, #SPM_Table2_wrapper .dataTables_scrollBody {
   max-height: 33.25rem !important; }
 
 #employees, #custommers {

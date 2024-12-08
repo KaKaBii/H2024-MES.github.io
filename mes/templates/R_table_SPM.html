@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>IMT</title>
+    <title>SPM</title>
     <!-- Favicon icon -->
     
     <link rel="icon" type="image/png" sizes="16x16" href="../static/images/DSK-LOGO圖片_1.jpg">
@@ -133,7 +133,6 @@
                 </ul>
             </div>
         </div>
-
         <!--**********************************
             Content body start
         ***********************************-->
@@ -141,150 +140,93 @@
         <div class="content-body">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4>IMT table</h4>
+                                <h4 class="card-title">庫存水位</h4>
                                 <div>
-                                    <button id="add_IMTrowBtn" class="btn btn-primary">新增</button>
-                                    <button id="save_IMTBtn" class="btn btn-secondary">儲存</button>
+                                    <button id="add_SPMrowBtn" class="btn btn-primary">新增</button>
+                                    <button id="save_SPMBtn" class="btn btn-secondary">儲存</button>
                                 </div>                 
-                            </div> 
+                            </div>                                
                             <div class="card-body">
                                 <div class="table-responsive">                                
-                                    <table class="display" id="IMT_Table" style="min-width: 900px" >
+                                    <table id="SPM_Table" class="display" style="min-width: 450px">
                                         <thead>
                                             <tr>
-                                                <!-- 標題欄位將動態插入 -->
+                                                <th>設備名稱</th>
+                                                <th>站別</th>
+                                                                                            
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- 資料內容將動態插入 -->
+                                            <tr>
+                                                <td>加工</td>
+                                                <td>2</td>                                                                                              
+                                            </tr>
+                                            <tr>
+                                                <td>出料</td>
+                                                <td>1</td>                                                                                         
+                                            </tr>   
+                                            <tr>
+                                                <td>分流</td>
+                                                <td>3</td>                                                                                            
+                                            </tr>                                    
+                                            <!-- 新增的項目將會顯示在這裡 -->
                                         </tbody>
                                     </table>
-                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+          
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">設備: 加工</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table" id="itemTable">
+                                        <thead>
+                                            <tr>
+                                                <th>備品</th>
+                                                <th>預防更換次數</th>
+                                                <th>運轉次數</th>
+                                                <th>狀態</th>                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>木板</td>
+                                                <td>100</td>
+                                                <td>11</td>
+                                                <td>G</td>                                                
+                                            </tr>
+                                            <tr>
+                                                <td>馬達</td>
+                                                <td>1000</td>
+                                                <td>23</td>
+                                                <td>G</td>                                               
+                                            </tr>
+                                            <tr>
+                                                <td>感測器</td>
+                                                <td>500</td>
+                                                <td>30</td>
+                                                <td>G</td>                                               
+                                            </tr>
+                                            <!-- 新增的項目將會顯示在這裡 -->
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>      
         </div>
                 
-        <script>
-            let newRow = null;
-        
-            // 儲存的資料變數
-            let savedData = [];
-        
-            // 載入 Google Sheet 資料
-            function loadGoogleSheet() {
-                const table = document.getElementById("IMT_Table");
-                const thead = table.querySelector("thead tr");
-                const tbody = table.querySelector("tbody");
-        
-                const csvUrl = "https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/export?format=csv&gid=237539222";
-        
-                fetch(csvUrl)
-                    .then(response => response.text())
-                    .then(data => {
-                        const rows = data.split("\n").map(row => row.split(","));
-        
-                        // 動態插入表格標題
-                        const headers = rows[0];
-                        headers.forEach(header => {
-                            const th = document.createElement("th");
-                            th.textContent = header || "";
-                            thead.appendChild(th);
-                        });
-        
-                        // 動態插入資料列
-                        rows.slice(1).forEach(row => {
-                            const tr = document.createElement("tr");
-                            row.forEach(cell => {
-                                const td = document.createElement("td");
-                                td.textContent = cell || "";
-                                tr.appendChild(td);
-                            });
-                            tbody.appendChild(tr);
-                        });
-                    })
-                    .catch(err => console.error("Error loading Google Sheet:", err));
-            }
-        
-            // 按下新增按鈕時，在第一列插入輸入框
-            document.getElementById("add_IMTrowBtn").addEventListener("click", () => {
-                const table = document.getElementById("IMT_Table");
-                const tbody = table.querySelector("tbody");
-        
-                const tr = document.createElement("tr");
-        
-                // 新增輸入框 (Product, People, total)
-                tr.innerHTML = `
-                    <td><input type="text" class="form-control" id="productInput"></td>
-                    <td><input type="text" class="form-control" id="peopleInput"></td>
-                    <td><input type="number" class="form-control" id="totalInput"></td>
-                    <td><input type="text" class="form-control" id="numberInput" disabled></td>
-                    <td><input type="text" class="form-control" id="dateInput" disabled></td>
-                `;
-        
-                // 插入到表格的第一列
-                tbody.insertBefore(tr, tbody.firstChild);
-        
-                newRow = tr; // 保存新增行以便儲存
-            });
-        
-            // 按下儲存按鈕時
-            document.getElementById("save_IMTBtn").addEventListener("click", () => {
-                if (newRow) {
-                    const product = document.getElementById("productInput").value;
-                    const people = document.getElementById("peopleInput").value;
-                    const total = document.getElementById("totalInput").value;
-                    const number = total; // Number = total
-                    const date = new Date().toLocaleDateString(); // 使用當前日期
-        
-                    // 顯示確認訊息框
-                    const confirmation = confirm(`請確認新增資料：
-                        \nProduct: ${product}
-                        \nPeople: ${people}
-                        \nTotal: ${total}
-                        \nNumber: ${number}
-                        \nDate: ${date}`);
-        
-                    if (confirmation) {
-                        // 儲存資料
-                        savedData.push({
-                            product,
-                            people,
-                            total,
-                            number,
-                            date
-                        });
-        
-                        // 更新表格，並填入Number及Date欄位
-                        const tdNumber = newRow.querySelector("#numberInput");
-                        const tdDate = newRow.querySelector("#dateInput");
-        
-                        tdNumber.value = number; // 設定 Number 欄位
-                        tdDate.value = date;     // 設定 Date 欄位
-        
-                        // 禁用儲存後的欄位，防止編輯
-                        newRow.querySelector("#productInput").disabled = true;
-                        newRow.querySelector("#peopleInput").disabled = true;
-                        newRow.querySelector("#totalInput").disabled = true;
-        
-                        // 將新增的資料行插入到表格中
-                        const tbody = document.querySelector("#IMT_Table tbody");
-                        tbody.appendChild(newRow);
-        
-                       
-                    }
-                }
-            });
-        
-            // 初始化載入 Google Sheet 資料
-            loadGoogleSheet();
-        </script>
     <!--**********************************
         Scripts
     ***********************************-->

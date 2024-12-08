@@ -24,14 +24,16 @@
     <!--**********************************
         Main wrapper start
     ***********************************-->
-    <div id="main-wrapper">
+    <div id="main-wrapper" class="show">
+        
         <div class="nav-header">
-            <a href="R_index.html" class="brand-logo">
-                <img class="logo-abbr" src="../static/images/DSK-LOGO去背_10.png" alt="">                
-                <img class="brand-title" src="../static/images/DSK-LOGO去背_12.png" alt="">
-            </a>          
+            <a href="{{ url_for('index') }}" class="brand-logo">
+                <img class="logo-abbr" src="../static/images/DSK-LOGO去背_10.png" alt="Logo">                
+                <img class="brand-title" src="../static/images/DSK-LOGO去背_12.png" alt="Logo">
+            </a> 
+                    <!--參考index2  button type="button" id="toggle-btn" class="H-toggle">&#9776;</button -->               
             <div class="nav-control">
-                <div class="hamburger">
+                <div class="hamburger sidebar-toggle is-active">
                     <span class="line"></span><span class="line"></span><span class="line"></span>
                 </div>
             </div>
@@ -112,7 +114,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-form"></i><span class="nav-text">SPM 備品管理</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url_for('chart_data') }}">空</a></li>                            
+                            <li><a href="{{ url_for('R_table_SPM') }}">庫存水位</a></li>                            
                         </ul>
                     </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
@@ -139,7 +141,7 @@
         <div class="content-body">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-6">
                         <div class="card">
                             <div class="card-header">
                                 <h4>QMS table</h4>
@@ -150,7 +152,7 @@
                             </div> 
                             <div class="card-body">
                                 <div class="table-responsive">                                
-                                    <table id="QMS_Table" class="display" style="min-width: 900px">
+                                    <table id="QMS_Table" class="display" style="min-width: 450px">
                                         <thead>
                                             <tr>
                                                 <!-- 標題欄位將動態插入 -->
@@ -165,8 +167,52 @@
                             </div>
                         </div>
                     </div>
+
+          
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">ORDER: 124</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="display" id="IMT_Table">
+                                        <thead>
+                                            <tr>
+                                                <th>製造日期</th>
+                                                <th>花費時間(s)</th>
+                                                <th>Result</th>
+                                                <th>Link</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2024-10-17 0:17:56</td>
+                                                <td>60</td>
+                                                <td>G</td>
+                                                <td><a href="https://drive.google.com/file/d/1nB2Os4HVMT_FrTFyUwZC8qzzFo7Y7OmV/view?usp=drive_link" target="_blank">image</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2024-10-17 0:19:27</td>
+                                                <td>59</td>
+                                                <td>N</td>
+                                                <td><a href="https://drive.google.com/file/d/1kUDeZiJ1fbMR4c_5oQ2WftHEnEi0oY9n/view?usp=drive_link" target="_blank">image</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2024-10-17 1:04:20</td>
+                                                <td>55</td>
+                                                <td>G</td>
+                                                <td><a href="https://drive.google.com/file/d/1kbJeRlGyJijOoiNLymbNd826j7LIxjXF/view?usp=drive_link" target="_blank">image</a></td>
+                                            </tr>
+                                            <!-- 新增的項目將會顯示在這裡 -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div>      
         </div>
                 
         <script>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>IMT</title>
+    <title>SPM</title>
     <!-- Favicon icon -->
     
     <link rel="icon" type="image/png" sizes="16x16" href="../static/images/DSK-LOGO圖片_1.jpg">
@@ -133,42 +133,193 @@
                 </ul>
             </div>
         </div>
-
         <!--**********************************
             Content body start
         ***********************************-->
        
         <div class="content-body">
-            <div class="container-fluid">
+            <div class="container-fluid">              
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>IMT table</h4>
-                                <div>
-                                    <button id="add_IMTrowBtn" class="btn btn-primary">新增</button>
-                                    <button id="save_IMTBtn" class="btn btn-secondary">儲存</button>
-                                </div>                 
-                            </div> 
+                                <h4 class="card-title">Basic Datatable</h4>
+                            </div>
                             <div class="card-body">
-                                <div class="table-responsive">                                
-                                    <table class="display" id="IMT_Table" style="min-width: 900px" >
+                                <div class="table-responsive">
+                                    <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <!-- 標題欄位將動態插入 -->
+                                                <th>Name</th>
+                                                <th>Position</th>
+                                                <th>Office</th>
+                                                <th>Age</th>
+                                                <th>Start date</th>
+                                                <th>Salary</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- 資料內容將動態插入 -->
+                                            <tr>
+                                                <td>Tiger Nixon</td>
+                                                <td>System Architect</td>
+                                                <td>Edinburgh</td>
+                                                <td>61</td>
+                                                <td>2011/04/25</td>
+                                                <td>$320,800</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Garrett Winters</td>
+                                                <td>Accountant</td>
+                                                <td>Tokyo</td>
+                                                <td>63</td>
+                                                <td>2011/07/25</td>
+                                                <td>$170,750</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ashton Cox</td>
+                                                <td>Junior Technical Author</td>
+                                                <td>San Francisco</td>
+                                                <td>66</td>
+                                                <td>2009/01/12</td>
+                                                <td>$86,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cedric Kelly</td>
+                                                <td>Senior Javascript Developer</td>
+                                                <td>Edinburgh</td>
+                                                <td>22</td>
+                                                <td>2012/03/29</td>
+                                                <td>$433,060</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Airi Satou</td>
+                                                <td>Accountant</td>
+                                                <td>Tokyo</td>
+                                                <td>33</td>
+                                                <td>2008/11/28</td>
+                                                <td>$162,700</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Brielle Williamson</td>
+                                                <td>Integration Specialist</td>
+                                                <td>New York</td>
+                                                <td>61</td>
+                                                <td>2012/12/02</td>
+                                                <td>$372,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Herrod Chandler</td>
+                                                <td>Sales Assistant</td>
+                                                <td>San Francisco</td>
+                                                <td>59</td>
+                                                <td>2012/08/06</td>
+                                                <td>$137,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Rhona Davidson</td>
+                                                <td>Integration Specialist</td>
+                                                <td>Tokyo</td>
+                                                <td>55</td>
+                                                <td>2010/10/14</td>
+                                                <td>$327,900</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Colleen Hurst</td>
+                                                <td>Javascript Developer</td>
+                                                <td>San Francisco</td>
+                                                <td>39</td>
+                                                <td>2009/09/15</td>
+                                                <td>$205,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sonya Frost</td>
+                                                <td>Software Engineer</td>
+                                                <td>Edinburgh</td>
+                                                <td>23</td>
+                                                <td>2008/12/13</td>
+                                                <td>$103,600</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jena Gaines</td>
+                                                <td>Office Manager</td>
+                                                <td>London</td>
+                                                <td>30</td>
+                                                <td>2008/12/19</td>
+                                                <td>$90,560</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Quinn Flynn</td>
+                                                <td>Support Lead</td>
+                                                <td>Edinburgh</td>
+                                                <td>22</td>
+                                                <td>2013/03/03</td>
+                                                <td>$342,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Charde Marshall</td>
+                                                <td>Regional Director</td>
+                                                <td>San Francisco</td>
+                                                <td>36</td>
+                                                <td>2008/10/16</td>
+                                                <td>$470,600</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Haley Kennedy</td>
+                                                <td>Senior Marketing Designer</td>
+                                                <td>London</td>
+                                                <td>43</td>
+                                                <td>2012/12/18</td>
+                                                <td>$313,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tatyana Fitzpatrick</td>
+                                                <td>Regional Director</td>
+                                                <td>London</td>
+                                                <td>19</td>
+                                                <td>2010/03/17</td>
+                                                <td>$385,750</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Michael Silva</td>
+                                                <td>Marketing Designer</td>
+                                                <td>London</td>
+                                                <td>66</td>
+                                                <td>2012/11/27</td>
+                                                <td>$198,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Paul Byrd</td>
+                                                <td>Chief Financial Officer (CFO)</td>
+                                                <td>New York</td>
+                                                <td>64</td>
+                                                <td>2010/06/09</td>
+                                                <td>$725,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gloria Little</td>
+                                                <td>Systems Administrator</td>
+                                                <td>New York</td>
+                                                <td>59</td>
+                                                <td>2009/04/10</td>
+                                                <td>$237,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bradley Greer</td>
+                                                <td>Software Engineer</td>
+                                                <td>London</td>
+                                                <td>41</td>
+                                                <td>2012/10/13</td>
+                                                <td>$132,000</td>
+                                            </tr>
+                                            <!-- 新增的項目將會顯示在這裡 -->
                                         </tbody>
                                     </table>
-                                 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>      
         </div>
                 
         <script>
@@ -179,11 +330,11 @@
         
             // 載入 Google Sheet 資料
             function loadGoogleSheet() {
-                const table = document.getElementById("IMT_Table");
+                const table = document.getElementById("SPM_Table");
                 const thead = table.querySelector("thead tr");
                 const tbody = table.querySelector("tbody");
         
-                const csvUrl = "https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/export?format=csv&gid=237539222";
+                const csvUrl = "https://docs.google.com/spreadsheets/d/1uG_1YrsVX-U5fAQmkM6Izkf9F0zIfpuQhqm4ILcFV94/export?format=csv&gid=1081204972";
         
                 fetch(csvUrl)
                     .then(response => response.text())
@@ -213,8 +364,8 @@
             }
         
             // 按下新增按鈕時，在第一列插入輸入框
-            document.getElementById("add_IMTrowBtn").addEventListener("click", () => {
-                const table = document.getElementById("IMT_Table");
+            document.getElementById("add_SPMrowBtn").addEventListener("click", () => {
+                const table = document.getElementById("SPM_Table");
                 const tbody = table.querySelector("tbody");
         
                 const tr = document.createElement("tr");
@@ -235,7 +386,7 @@
             });
         
             // 按下儲存按鈕時
-            document.getElementById("save_IMTBtn").addEventListener("click", () => {
+            document.getElementById("save_SPMBtn").addEventListener("click", () => {
                 if (newRow) {
                     const product = document.getElementById("productInput").value;
                     const people = document.getElementById("peopleInput").value;
@@ -274,7 +425,7 @@
                         newRow.querySelector("#totalInput").disabled = true;
         
                         // 將新增的資料行插入到表格中
-                        const tbody = document.querySelector("#IMT_Table tbody");
+                        const tbody = document.querySelector("#SPM_Table tbody");
                         tbody.appendChild(newRow);
         
                        
