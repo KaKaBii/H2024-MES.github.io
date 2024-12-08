@@ -8276,7 +8276,7 @@ a {
 
 [data-sidebar-style="mini"] .nav-control,
 [data-layout="horizontal"] .nav-control {
-  display: none; }
+  display: block; }
 
 @media only screen and (max-width: 767px) {
   [data-sidebar-style="overlay"] .nav-header .logo-abbr {
@@ -8327,6 +8327,16 @@ a {
     outline: none;
   }
 }
+
+
+
+
+
+
+
+
+
+
 
   .nav-header .logo-abbr {
     margin-left: 2px;
@@ -8390,7 +8400,7 @@ a {
       right: -3rem; } }
   @media only screen and (max-width: 575px) {
     .nav-control {
-      right: -2.5rem; } }
+      left: -2.5rem; } }
 
 .hamburger {
   display: inline-block;
@@ -11017,7 +11027,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   [data-sidebar-style="mini"] .nav-header {
     width: 3.75rem; }
     [data-sidebar-style="mini"] .nav-header .nav-control {
-      z-index: -1; }
+      z-index: 1; }
       [data-sidebar-style="mini"] .nav-header .nav-control .hamburger {
         left: 3.75rem !important; }
         [data-sidebar-style="mini"] .nav-header .nav-control .hamburger .line {

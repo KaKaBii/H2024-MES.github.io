@@ -53,16 +53,16 @@ def get_db_connection():
         data = [[row[0], row[1], row[2]] for row in data]
 
         # 清空工作表的 A、B、C 欄中的舊資料
-        ("A2", [["Order", "Quantity", "Date"]])  # 設置標題
-        worksheet.batch_clear(["A3:C"])
-        worksheet2.batch_clear(["A3:C"])
+        ("B1", [["Order", "Quantity", "Date"]])  # 設置標題
+        worksheet.batch_clear(["B2:D"])
+        worksheet2.batch_clear(["B2:D"])
 
         # 準備要寫入的資料（包括標題行）
         rows_to_update = [["Order", "Number", "Date"]] + data  # 將標題與資料結合
 
         # 一次性寫入所有資料，從 A2 欄開始
-        worksheet.update("A2:C" + str(len(rows_to_update) + 1), rows_to_update)
-        worksheet2.update("A2:C" + str(len(rows_to_update) + 1), rows_to_update)
+        worksheet.update("B1:D" + str(len(rows_to_update) + 1), rows_to_update)
+        worksheet2.update("B1:D" + str(len(rows_to_update) + 1), rows_to_update)
         return conn
     except sqlite3.Error as e:
         logging.error(f"Database connection error: {e}")
@@ -599,7 +599,7 @@ def test():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
 
 
 

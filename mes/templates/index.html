@@ -11,25 +11,21 @@
     <link href="../static/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div id="main-wrapper">
+    <div id="main-wrapper" class="show">
+        
         <div class="nav-header">
             <a href="{{ url_for('index') }}" class="brand-logo">
                 <img class="logo-abbr" src="../static/images/DSK-LOGO去背_10.png" alt="Logo">                
                 <img class="brand-title" src="../static/images/DSK-LOGO去背_12.png" alt="Logo">
-            </a>          
+            </a> 
+                    <!--參考index2  button type="button" id="toggle-btn" class="H-toggle">&#9776;</button -->               
             <div class="nav-control">
                 <div class="hamburger sidebar-toggle is-active">
                     <span class="line"></span><span class="line"></span><span class="line"></span>
                 </div>
             </div>
         </div>
-        <!--**********************************
-            Nav header end
-        ***********************************-->
-
-        <!--**********************************
-            Header start
-        ***********************************-->
+            
         <div class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
